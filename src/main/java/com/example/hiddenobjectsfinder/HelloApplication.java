@@ -57,7 +57,7 @@ public class HelloApplication extends Application {
     private void createStartScreen(Stage stage) {
         StackPane startContainer = new StackPane();
 
-        ImageView backgroundImage = new ImageView(new Image("file:src/main/resources/com/example/hiddenobjectsfinder/start_background.jpg"));
+        ImageView backgroundImage = new ImageView(new Image("file:src/main/resources/com/example/hiddenobjectsfinder/end_background.jpg"));
         backgroundImage.setFitWidth(1024);
         backgroundImage.setFitHeight(580);
 
@@ -65,9 +65,9 @@ public class HelloApplication extends Application {
         startScreen.setAlignment(Pos.CENTER);
 
         Label titleLabel = new Label("Enhanced Hidden Object Finder");
-        titleLabel.setFont(Font.font("Arial", FontWeight.BOLD, 30));
-        titleLabel.setStyle("-fx-text-fill: white; -fx-effect: dropshadow(three-pass-box, rgba(0,0,0,0.8), 10, 0, 0, 0);");
-
+        titleLabel.setFont(Font.font("Cooper", FontWeight.BOLD, 50));
+        titleLabel.setStyle("-fx-text-fill: white; -fx-effect: dropshadow(three-pass-box, rgba(0,0,0,0.8), 10, 10, 0, 0);");
+        titleLabel.setTranslateY(-75);
         Button startButton = new Button("Start Game");
         startButton.setStyle("-fx-font-size: 20px; -fx-padding: 10px 20px; -fx-background-color: #4CAF50; -fx-text-fill: white;");
         startButton.setOnAction(e -> {
@@ -135,52 +135,7 @@ public class HelloApplication extends Application {
 
     setupObjectMovement(gameContainer);
 }
-//
-//    private void startGame(Stage stage) {
-//        this.mainContainer.getChildren().clear();
-//        this.startTime = System.currentTimeMillis();
-//
-//        StackPane gameContainer = new StackPane();
-//        gameContainer.setStyle("-fx-background-image: url('file:src/main/resources/com/example/hiddenobjectsfinder/background_image.jpg');" +
-//                "-fx-background-size: cover;");
-//        gameContainer.setPrefSize(1024, 580);
-//
-//        this.hiddenObjects = new ArrayList<>(Arrays.asList("book", "glass bird", "mirror", "purse", "shoe"));
-//        this.hintStack = new Stack<>();
-//        this.hintStack.addAll(hiddenObjects);
-//
-//        this.objectListContainer = new HBox(20);
-//        this.objectListContainer.setAlignment(Pos.CENTER);
-//        this.objectListContainer.setPadding(new Insets(10));
-//        this.objectListContainer.setStyle(
-//                "-fx-background-color: rgba(255, 255, 255, 0.8); " +
-//                        "-fx-padding: 15px; " +
-//                        "-fx-border-color: black; " +
-//                        "-fx-border-width: 2px; " +
-//                        "-fx-border-radius: 10px;"
-//        );
-//
-//        updateObjectList();
-//
-//        this.addHiddenObject(gameContainer, "book", "file:src/main/resources/com/example/hiddenobjectsfinder/hiddenobject_book.png", 0.45, 0.67, 0.3, 30);
-//        this.addHiddenObject(gameContainer, "glass bird", "file:src/main/resources/com/example/hiddenobjectsfinder/hiddenobject_glass_bird.png", 0.47, 0.40, 0.5, 10);
-//        this.addHiddenObject(gameContainer, "mirror", "file:src/main/resources/com/example/hiddenobjectsfinder/hiddenobject_mirror.png", 0.15, 0.60, 0.6, 10);
-//        this.addHiddenObject(gameContainer, "purse", "file:src/main/resources/com/example/hiddenobjectsfinder/hiddenobject_purse.png", 0.87, 0.60, 0.6, 10);
-//        this.addHiddenObject(gameContainer, "shoe", "file:src/main/resources/com/example/hiddenobjectsfinder/hiddenobject_shoe.png", 0.0, 0.88, 0.5, 0);
-//
-//        ImageView hintIcon = new ImageView(new Image("file:src/main/resources/com/example/hiddenobjectsfinder/hint_bulb.png"));
-//        hintIcon.setFitWidth(50);
-//        hintIcon.setFitHeight(50);
-//        hintIcon.setTranslateX(420);
-//        hintIcon.setTranslateY(-260);
-//        hintIcon.setOnMouseClicked(e -> showHint(gameContainer));
-//
-//        gameContainer.getChildren().add(hintIcon);
-//
-//        this.mainContainer.getChildren().addAll(gameContainer, this.objectListContainer);
-//
-//        setupObjectMovement(gameContainer);
-//    }
+
 private void updateObjectList() {
     // Save the buttons before clearing
     List<Button> buttons = new ArrayList<>();
@@ -211,21 +166,6 @@ private void updateObjectList() {
     this.objectListContainer.getChildren().addAll(buttons);
 }
 
-//    private void updateObjectList() {
-//        this.objectListContainer.getChildren().clear();
-//        for (String object : hiddenObjects) {
-//            Label label = new Label(object);
-//            label.setStyle(
-//                    "-fx-font-size: 16px; " +
-//                            "-fx-padding: 8px 15px; " +
-//                            "-fx-background-color: white; " +
-//                            "-fx-border-color: black; " +
-//                            "-fx-border-width: 1px; " +
-//                            "-fx-border-radius: 5px;"
-//            );
-//            this.objectListContainer.getChildren().add(label);
-//        }
-//    }
 
 
     private void addHiddenObject(StackPane root, String objectId, String imagePath, double xPercentage, double yPercentage, double scale, double rotation) {
@@ -287,39 +227,6 @@ private void updateObjectList() {
                 });
     }
 }
-//    private void showHint(StackPane gameContainer) {
-//        if (!hintStack.isEmpty()) {
-//            String hint = hintStack.peek();
-//            hintsUsed++;
-//            score -= 10;
-//
-//            Label hintLabel = new Label("Hint: Look for " + hint + "!");
-//            hintLabel.setStyle("-fx-background-color: rgba(255, 255, 0, 0.8); -fx-font-size: 18px; -fx-padding: 10px; -fx-border-radius: 5px;");
-//            hintLabel.setTranslateY(-250);
-//            gameContainer.getChildren().add(hintLabel);
-//
-//            PauseTransition pause = new PauseTransition(Duration.seconds(2));
-//            pause.setOnFinished(e -> gameContainer.getChildren().remove(hintLabel));
-//            pause.play();
-//
-//            gameContainer.getChildren().stream()
-//                    .filter(node -> node instanceof ImageView)
-//                    .map(node -> (ImageView) node)
-//                    .filter(imageView -> {
-//                        String url = imageView.getImage().getUrl();
-//                        return url != null && url.contains(hint.replace(" ", "_"));
-//                    })
-//                    .findFirst()
-//                    .ifPresent(imageView -> {
-//                        ScaleTransition scale = new ScaleTransition(Duration.seconds(1.0), imageView);
-//                        scale.setToX(1.2);
-//                        scale.setToY(1.2);
-//                        scale.setAutoReverse(true);
-//                        scale.setCycleCount(4);
-//                        scale.play();
-//                    });
-//        }
-//    }
 
     private void setupObjectMovement(StackPane gameContainer) {
         gameContainer.getChildren().stream()
@@ -352,14 +259,6 @@ private void updateObjectList() {
         }
     }
 
-//
-//    private void checkGameCompletion() {
-//        if (hiddenObjects.isEmpty()) {
-//            long endTime = System.currentTimeMillis();
-//            long timeTaken = (endTime - startTime) / 1000;
-//            showGameCompleteScreen(timeTaken);
-//        }
-//    }
 
     private void showGameCompleteScreen(long timeTaken) {
         mainContainer.getChildren().clear();
