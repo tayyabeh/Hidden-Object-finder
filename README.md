@@ -47,6 +47,6 @@
 
 
 
-![homee](https://github.com/user-attachments/assets/ee15e210-3b72-4723-b7c8-32d34d58209d)
+![image](https://github.com/user-attachments/assets/1866e895-4f6e-4870-a576-40577bd58c51)
 ![gamee](https://github.com/user-attachments/assets/8a681e10-fd55-47eb-afa3-317a11895368)
 ![end](https://github.com/user-attachments/assets/f2322133-3877-4085-8d27-4937dc989b0b)
